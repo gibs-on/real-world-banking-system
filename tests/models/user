@@ -1,0 +1,33 @@
+const { createUser, getUser, updateUser, deleteUser } = require('../controllers/auth.test');
+
+describe('User Management', () => {
+    test('Create a new user', () => {
+        // Arrange: Set up the initial state
+        const userData = {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            password: 'password123',
+        };
+
+        // Act: Perform the action being tested
+        const createdUser = createUser(userData);
+
+        // Assert: Check the expected outcome
+        expect(createdUser).toBeDefined();
+        // Add more assertions as needed
+    });
+
+    test('Retrieve user details', () => {
+        // Arrange: Set up the initial state
+        const userId = 'user123';
+
+        // Act: Perform the action being tested
+        const user = getUser(userId);
+
+        // Assert: Check the expected outcome
+        expect(user).toBeDefined();
+        // Add more assertions as needed
+    });
+
+    // Add more test cases for updateUser and deleteUser
+});

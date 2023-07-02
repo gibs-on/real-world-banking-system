@@ -1,0 +1,35 @@
+{
+  "name": "real-world-banking-system",
+  "version": "1.0.0",
+  "description": "an example real-world banking system using to demonstrate my background aspect as a backend developer ",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gibs-on/real-world-banking-system.git"
+  },
+  "author": "gibs.on",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gibs-on/real-world-banking-system/issues"
+  },
+  "homepage": "https://github.com/gibs-on/real-world-banking-system#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.4.3",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
+  }
+}
