@@ -126,10 +126,3 @@ Please ensure that your code follows the project's coding style and conventions.
 The Project Name is open source and available under the
 
  [MIT License](https://opensource.org/licenses/MIT).
-
-## Credits
-
-Acknowledgments and credits to any contributors or resources that have been used in the project.
-```
-
-Feel free to customize the README.md file according to your project's specific details, such as providing instructions for running tests, deployment instructions, or any other relevant documentation that would assist developers in understanding and contributing to the project.
