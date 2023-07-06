@@ -1,0 +1,29 @@
+{
+  "name": "real-world-banking-system",
+  "version": "1.0.0",
+  "description": "an example of a real-world banking system",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Gibson",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jest": "^29.6.0",
+    "mysql2": "^3.4.5",
+    "sequelize": "^6.32.1",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.6",
+    "@babel/preset-env": "^7.22.6",
+    "babel-jest": "^29.6.0"
+  }
+}
