@@ -9,11 +9,16 @@ const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD,
 });
 
-try {
-    await sequelize.authenticate();
-    console.log('Database connection has been established successfully.');
-} catch (error) {
-    console.error('Unable to connect to the database:', error);
+async function authenticateDatabase() {
+    try {
+        await sequelize.authenticate();
+        console.log('Database connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
 }
+
+// Call the async function to authenticate the database
+authenticateDatabase();
 
 export default sequelize;

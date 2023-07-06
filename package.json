@@ -1,5 +1,6 @@
 {
   "name": "real-world-banking-system",
+  "type": "module",
   "version": "1.0.0",
   "description": "an example of a real-world banking system",
   "main": "app.js",

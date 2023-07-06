@@ -1,15 +1,15 @@
 import bcrypt from 'bcrypt';
-// import User from '../models/User';
+import User from '../models/User.js';
 
 const authService = {
-    register: async (username, password) => {
+    register: async (username, email, password) => {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({ username, password: hashedPassword });
+        const newUser = await User.create({ username, email, password: hashedPassword });
         return newUser;
     },
 
-    login: async (username, password) => {
-        const user = await User.findOne({ where: { username } });
+    login: async (email, password) => {
+        const user = await User.findOne({ where: { email } });
         if (!user) {
             throw new Error('User not found');
         }

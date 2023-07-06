@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import authService from '../src/services/authService';
-// import User from '../src/models/User';
+import User from '../src/models/User';
 
-jest.mock('../models/User'); // Mocking the User model
+jest.mock('../src/models/User'); // Mocking the User model
 
 describe('Authentication Service', () => {
     it('should register a new user', async () => {

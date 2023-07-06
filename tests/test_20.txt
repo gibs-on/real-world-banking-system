@@ -1,0 +1,398 @@
+PS C:\Users\user\projects\real-world banking system> npm test
+
+> real-world-banking-system@1.0.0 test
+> jest
+
+ FAIL  tests/authController.test.js (14.063 s)
+  ● Console
+
+    console.error
+      Unable to connect to the database: ConnectionError [SequelizeConnectionError]: You are trying to `import` a file outside of the scope of the test code.
+          at ConnectionManager.connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\mysql\connection-manager.js:126:17)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at ConnectionManager._connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32
+          at ConnectionManager.getConnection (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:280:7)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\sequelize.js:638:26
+          at Sequelize.authenticate (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\sequelize.js:972:5)
+          at authenticateDatabase (C:\Users\user\projects\real-world banking system\database\connection.js:14:9) {
+        parent: ReferenceError: You are trying to `import` a file outside of the scope of the test code.
+            at Runtime._execModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1381:13)
+            at Runtime._loadModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1024:12)
+            at Runtime.requireModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:884:12)
+            at Runtime.requireModuleOrMock (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1050:21)
+            at ClientHandshake.handshakeResult (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\client_handshake.js:177:26)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:45:22)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          fatal: true
+        },
+        original: ReferenceError: You are trying to `import` a file outside of the scope of the test code.
+            at Runtime._execModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1381:13)
+            at Runtime._loadModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1024:12)
+            at Runtime.requireModule (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:884:12)
+            at Runtime.requireModuleOrMock (C:\Users\user\projects\real-world banking system\node_modules\jest-runtime\build\index.js:1050:21)
+            at ClientHandshake.handshakeResult (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\client_handshake.js:177:26)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:45:22)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          fatal: true
+        }
+      }
+
+      15 |         console.log('Database connection has been established successfully.');
+      16 |     } catch (error) {
+    > 17 |         console.error('Unable to connect to the database:', error);
+         |                 ^
+      18 |     }
+      19 | }
+      20 |
+
+      at error (database/connection.js:17:17)
+
+  ● Authentication Controller › should register a new user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 404
+
+       7 |         const userData = { username: 'testuser', password: 'password123' };
+       8 |         const response = await request(app).post('/register').send(userData);
+    >  9 |         expect(response.status).toBe(201);
+         |                                 ^
+      10 |         expect(response.body.username).toBe(userData.username);
+      11 |     });
+      12 |
+
+      at Object.toBe (tests/authController.test.js:9:33)
+
+  ● Authentication Controller › should log in an existing user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      14 |         const userData = { username: 'testuser', password: 'password123' };
+      15 |         const response = await request(app).post('/login').send(userData);
+    > 16 |         expect(response.status).toBe(200);
+         |                                 ^
+      17 |         expect(response.body.username).toBe(userData.username);
+      18 |     });
+      19 | });
+
+      at Object.toBe (tests/authController.test.js:16:33)
+
+ FAIL  tests/authService.test.js (14.598 s)
+  ● Console
+
+    console.error
+      Unable to connect to the database: AccessDeniedError [SequelizeAccessDeniedError]: Access denied for user ''@'localhost' (using password: YES)
+          at ConnectionManager.connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\mysql\connection-manager.js:118:17)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at ConnectionManager._connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32
+          at ConnectionManager.getConnection (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:280:7)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\sequelize.js:638:26
+          at Sequelize.authenticate (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\sequelize.js:972:5)
+          at authenticateDatabase (C:\Users\user\projects\real-world banking system\database\connection.js:14:9) {
+        parent: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        },
+        original: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        }
+      }
+
+      15 |         console.log('Database connection has been established successfully.');
+      16 |     } catch (error) {
+    > 17 |         console.error('Unable to connect to the database:', error);
+         |                 ^
+      18 |     }
+      19 | }
+      20 |
+
+      at error (database/connection.js:17:17)
+
+  ● Authentication Service › should register a new user
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      Object {
+    -   "password": "$2b$10$pMraEPtI4XxxD4iVE3gC6OhyLiX0w3PofFPD0xR9a4Qekx6DHgp9W",
+    +   "password": "$2b$10$fD6/ulaG1qPBFTa7iKWOHOgL5JAgWbkai7c5Q.BFftLH2OO2zpPn.",
+        "username": "testuser",
+      },
+
+    Number of calls: 1
+
+      16 |
+      17 |         expect(User.create).toHaveBeenCalledTimes(1);
+    > 18 |         expect(User.create).toHaveBeenCalledWith({ username, password: hashedPassword });
+         |                             ^
+      19 |         expect(newUser.username).toBe(username);
+      20 |     });
+      21 |
+
+      at Object.toHaveBeenCalledWith (tests/authService.test.js:18:29)
+
+ FAIL  tests/accountController.test.js (15.136 s)
+  ● Console
+
+    console.error
+      Unable to connect to the database: AccessDeniedError [SequelizeAccessDeniedError]: Access denied for user ''@'localhost' (using password: YES)
+          at ConnectionManager.connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\mysql\connection-manager.js:118:17)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at ConnectionManager._connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32 {
+        parent: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        },
+        original: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        }
+      }
+
+      15 |         console.log('Database connection has been established successfully.');
+      16 |     } catch (error) {
+    > 17 |         console.error('Unable to connect to the database:', error);
+         |                 ^
+      18 |     }
+      19 | }
+      20 |
+
+      at error (database/connection.js:17:17)
+
+    console.error
+      Error in accountController.createAccount: AccessDeniedError [SequelizeAccessDeniedError]: Access denied for user ''@'localhost' (using password: YES)
+          at ConnectionManager.connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\mysql\connection-manager.js:118:17)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at ConnectionManager._connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32 {
+        parent: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        },
+        original: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        }
+      }
+
+       8 |             res.status(201).json(newAccount);
+       9 |         } catch (error) {
+    > 10 |             console.error('Error in accountController.createAccount:', error);
+         |                     ^
+      11 |             res.status(500).json({ error: 'Server error' });
+      12 |         }
+      13 |     },
+
+      at error (src/controllers/accountController.js:10:21)
+
+    console.error
+      Error in accountController.getAccountDetails: AccessDeniedError [SequelizeAccessDeniedError]: Access denied for user ''@'localhost' (using password: YES)
+          at ConnectionManager.connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\mysql\connection-manager.js:118:17)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at ConnectionManager._connect (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32
+          at ConnectionManager.getConnection (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\connection-manager.js:280:7)
+          at C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\sequelize.js:638:26
+          at MySQLQueryInterface.select (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+          at Function.findAll (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\model.js:1824:21)
+          at Function.findOne (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\model.js:1998:12)
+          at Function.findByPk (C:\Users\user\projects\real-world banking system\node_modules\sequelize\src\model.js:1955:12)
+          at Object.getAccountDetails (C:\Users\user\projects\real-world banking system\src\services\accountService.js:10:25)
+          at getAccountDetails (C:\Users\user\projects\real-world banking system\src\controllers\accountController.js:18:29) {
+        parent: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        },
+        original: Error: Access denied for user ''@'localhost' (using password: YES)
+            at Packet.asError (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packets\packet.js:728:17)
+            at ClientHandshake.execute (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\commands\command.js:29:26)
+            at Connection.handlePacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:497:34)
+            at PacketParser.onPacket (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:97:12)
+            at PacketParser.executeStart (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\packet_parser.js:75:16)
+            at Socket.<anonymous> (C:\Users\user\projects\real-world banking system\node_modules\mysql2\lib\connection.js:104:25)
+            at Socket.emit (node:events:513:28)
+            at addChunk (node:internal/streams/readable:324:12)
+            at readableAddChunk (node:internal/streams/readable:297:9)
+            at Socket.Readable.push (node:internal/streams/readable:234:10)
+            at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+          code: 'ER_ACCESS_DENIED_ERROR',
+          errno: 1045,
+          sqlState: '28000',
+          sqlMessage: "Access denied for user ''@'localhost' (using password: YES)",
+          sql: undefined
+        }
+      }
+
+      19 |             res.json(account);
+      20 |         } catch (error) {
+    > 21 |             console.error('Error in accountController.getAccountDetails:', error);
+         |                     ^
+      22 |             res.status(500).json({ error: 'Server error' });
+      23 |         }
+      24 |     }
+
+      at error (src/controllers/accountController.js:21:21)
+
+  ● Account Controller › should create a new account
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+       7 |         const accountData = { accountNumber: '1234567890', balance: 1000 };
+       8 |         const response = await request(app).post('/accounts').send(accountData);
+    >  9 |         expect(response.status).toBe(201);
+         |                                 ^
+      10 |         expect(response.body.accountNumber).toBe(accountData.accountNumber);
+      11 |     });
+      12 |
+
+      at Object.toBe (tests/accountController.test.js:9:33)
+
+  ● Account Controller › should get account details
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 500
+
+      14 |         const accountId = 1; // Assuming there is an account with ID 1
+      15 |         const response = await request(app).get(`/accounts/${accountId}`);
+    > 16 |         expect(response.status).toBe(200);
+         |                                 ^
+      17 |         expect(response.body.id).toBe(accountId);
+      18 |     });
+      19 | });
+
+      at Object.toBe (tests/accountController.test.js:16:33)
+
+Test Suites: 3 failed, 3 total
+Tests:       5 failed, 1 passed, 6 total
+Snapshots:   0 total
+Time:        17.098 s
+Ran all test suites.

@@ -1,9 +1,9 @@
 import express from 'express';
-import accountController from '../controllers/accountController';
+import accountController from '../controllers/accountController.js';
 
-const router = express.Router();
+const accountRouter = express.Router();
 
-router.post('/', accountController.createAccount);
-router.get('/:id', accountController.getAccountDetails);
+accountRouter.post('/', accountController.createAccount);
+accountRouter.get('/:id', accountController.getAccountDetails);
 
-export default router;
+export { accountRouter };

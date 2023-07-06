@@ -1,10 +1,10 @@
-import authService from '../services/authService';
+import authService from '../services/authService.js';
 
 const authController = {
     register: async (req, res) => {
         try {
-            const { username, password } = req.body;
-            const newUser = await authService.register(username, password);
+            const { username, email, password } = req.body;
+            const newUser = await authService.register(username, email, password);
             res.status(201).json(newUser);
         } catch (error) {
             console.error('Error in authController.register:', error);
@@ -14,8 +14,8 @@ const authController = {
 
     login: async (req, res) => {
         try {
-            const { username, password } = req.body;
-            const user = await authService.login(username, password);
+            const { email, password } = req.body;
+            const user = await authService.login(email, password);
             res.json(user);
         } catch (error) {
             console.error('Error in authController.login:', error);
@@ -24,4 +24,4 @@ const authController = {
     }
 };
 
-export default authController;
+export { authController };

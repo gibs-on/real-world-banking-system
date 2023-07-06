@@ -1,4 +1,4 @@
-import accountService from '../services/accountService';
+import accountService from '../services/accountService.js';
 
 const accountController = {
     createAccount: async (req, res) => {
